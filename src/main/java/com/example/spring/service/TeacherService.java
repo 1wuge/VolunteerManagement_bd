@@ -137,4 +137,9 @@ public class TeacherService {
         VolunteerService.updateAvatar(form.getTName(), form.getAvatar());
         return new ResultVo(AccountConst.CODEOK,null, AccountConst.CHANGE_INF_SUCCESS);
     }
+
+    public static List<String> getAvatars()
+    {
+        return mapper.getAvatars();
+    }
 }

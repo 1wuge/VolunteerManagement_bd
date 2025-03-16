@@ -101,7 +101,10 @@ public class VolunteerService {
         a+="%";
         page=(page-1)*size;
         List<VolunteerActivity> ac=stuActMapper.stuActPaginate(account,a,isSearch,"已结束",page,size);//首先获取该学生所有对应的活动
-
+        for(int i=0;i<ac.size();i++)
+        {
+            ac.get(i).setGrade(stuActMapper.getGrade(account,ac.get(i).getTName(),ac.get(i).getActivityName()));
+        }
         if(ac==null)
         {
             return new ResultVo(ActivityConst.CODE_NO,null,ActivityConst.GET_ACTIVITIES_NO);

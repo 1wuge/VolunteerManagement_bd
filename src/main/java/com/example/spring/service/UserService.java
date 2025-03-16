@@ -116,6 +116,10 @@ public class UserService {
         mapper.resetPassword(account.getAccount(),"12345678");
     }
 
+    public static List<String> getAvatars()
+    {
+       return mapper.getAvatars();
+    }
 
 
 }

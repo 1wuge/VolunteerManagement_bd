@@ -44,6 +44,9 @@
     <select id="selectByAccountNum" resultType="test.pojo.Teacher">
         select * from teacher where account = #{account}
     </select>
+    <select id="getAvatars" resultType="java.lang.String">
+        select avatar from teacher
+    </select>
 
 
 </mapper>

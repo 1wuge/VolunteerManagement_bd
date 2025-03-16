@@ -18,4 +18,5 @@ public interface AccountMapper {
     void saveInf(Account account);
 
 
+    List<String> getAvatars();
 }

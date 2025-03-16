@@ -30,4 +30,6 @@ public interface StuActMapper {
   List<VolunteerActivity> stuActPaginate(@Param("account")String account,@Param("name") String name,
                                          @Param("search") boolean search,@Param("status")String s,
                                          @Param("start") int start,@Param("size")int size);
+
+  String getGrade(@Param("account")String account,@Param("tName") String tName,@Param("activityName") String activityName);
 }

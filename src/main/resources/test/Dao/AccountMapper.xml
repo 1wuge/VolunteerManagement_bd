@@ -37,6 +37,9 @@
     <select id="getStuName" resultType="String">
         select username from bd1.account where account=#{account}
     </select>
+    <select id="getAvatars" resultType="java.lang.String">
+        select avatar from bd1.account;
+    </select>
 
 
 </mapper>

@@ -63,6 +63,10 @@
 
 
     </select>
+    <select id="getGrade" resultType="java.lang.String">
+        select grade from studentwithact where studentNum=#{account} and activityName=#{activityName}
+                                            and tName like #{tName}
+    </select>
 
 
 </mapper>

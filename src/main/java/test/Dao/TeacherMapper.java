@@ -22,4 +22,6 @@ public interface TeacherMapper {
 
 
     void saveInf(Teacher form);
+
+    List<String> getAvatars();
 }
