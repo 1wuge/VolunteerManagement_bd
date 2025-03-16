@@ -15,4 +15,7 @@
         </foreach>
 
     </insert>
+    <select id="getPhotos">
+        select photo from activity_photo where tName=#{tName} and activityName=#{act}
+    </select>
 </mapper>

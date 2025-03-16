@@ -49,7 +49,7 @@ public class MainController {
         return VolunteerService.deleteStuActi(account,activityName,tName);
     }
     @PostMapping("/query")
-    public VolunteerActivity Query(String activityName,String tName)
+    public ResultVo Query(String activityName,String tName)
     {
         return VolunteerService.selectByNames(activityName,tName);
     }

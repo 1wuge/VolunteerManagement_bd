@@ -226,9 +226,21 @@ public class VolunteerService {
         return 200;
     }
 
-    public static VolunteerActivity selectByNames(String activityName,String tName)
+    /**
+     * 主要是为了获取此活动的所有内容
+     * @param activityName
+     * @param tName
+     * @return
+     */
+    public static ResultVo selectByNames(String activityName,String tName)
     {
-        return mapper.selectByNames(activityName,tName);
+        VolunteerActivity ac = mapper.selectByNames(activityName, tName);
+        VolunteerActivityDTO acdto=new VolunteerActivityDTO();
+        BeanUtils.copyProperties(ac,acdto);
+
+        acdto.setPhotos(actPhotoMapper.getPhotos(tName,activityName));
+        System.out.println(actPhotoMapper.getPhotos(tName,activityName));
+        return new ResultVo(ActivityConst.CODE_OK,acdto,"获取成功");
     }
 
     public static int applyTeacherActi(VolunteerActivityDTO form)//教师添加志愿活动

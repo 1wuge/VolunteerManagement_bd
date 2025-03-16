@@ -7,5 +7,8 @@ import java.util.List;
 
 public interface ActPhotoMapper {
 
-    void addPhotos(@Param("tName") String tName,@Param("act") String activityName,@Param("photos") String[] photos);
+    String[] getPhotos(@Param("tName")String tName, @Param("act")String activityName);
+
+
+    void addPhotos(@Param("tName") String tName, @Param("act") String activityName, @Param("photos") String[] photos);
 }
