@@ -5,9 +5,12 @@ import com.example.spring.others.SqlSessionFactoryUtils;
 import com.example.spring.vo.ResultVo;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.BeanUtils;
+import test.Dao.ActPhotoMapper;
 import test.Dao.StuActMapper;
 import test.Dao.VolunteerMapper;
 import test.pojo.*;
+import test.pojo.dto.VolunteerActivityDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,14 @@ public class VolunteerService {
         // 获取SqlSession对象，用它来执行sql
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
         stuActMapper = sqlSession.getMapper(StuActMapper.class);
+    }//给mapper赋值
+
+    private static ActPhotoMapper actPhotoMapper;
+    static {
+        SqlSessionFactory sqlSessionFactory= SqlSessionFactoryUtils.getSqlSessionFactory();
+        // 获取SqlSession对象，用它来执行sql
+        SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        actPhotoMapper = sqlSession.getMapper(ActPhotoMapper.class);
     }//给mapper赋值
 
     /**
@@ -220,14 +231,17 @@ public class VolunteerService {
         return mapper.selectByNames(activityName,tName);
     }
 
-    public static int applyTeacherActi(VolunteerActivity form)//教师添加志愿活动
+    public static int applyTeacherActi(VolunteerActivityDTO form)//教师添加志愿活动
     {
         if(mapper.selectByNames(form.getActivityName(),form.getTName())!=null)//说明命名重复了
         {
             return 500;
         }
         else{
-            mapper.insertActi(form);
+            VolunteerActivity f=new VolunteerActivity();
+            actPhotoMapper.addPhotos(form.getTName(),form.getActivityName(),form.getPhotos());
+            BeanUtils.copyProperties(form,f);
+            mapper.insertActi(f);
             return 200;
         }
     }

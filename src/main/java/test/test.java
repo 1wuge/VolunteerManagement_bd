@@ -11,7 +11,7 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) {
-        File directory = new File("D:\\java_compile\\vueWorkSpace\\hellovuecli1\\public\\img");
+        /*File directory = new File("D:\\java_compile\\vueWorkSpace\\hellovuecli1\\public\\img");
 
         // 获取文件夹中的所有文件
         if (directory.exists() && directory.isDirectory()) {
@@ -57,7 +57,7 @@ public class test {
             }
         } else {
             System.out.println("指定的路径不是一个有效的文件夹");
-        }
+        }*/
     }
 }
 

@@ -5,6 +5,7 @@ import com.example.spring.service.VolunteerService;
 import com.example.spring.vo.ResultVo;
 import org.springframework.web.bind.annotation.*;
 import test.pojo.*;
+import test.pojo.dto.VolunteerActivityDTO;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class TeacherMainController {
      * @return
      */
     @PostMapping("/applyTeacherActi")//
-    public int List(VolunteerActivity form)
+    public int List(VolunteerActivityDTO form)
     {
         System.out.println(form);
        return VolunteerService.applyTeacherActi(form);

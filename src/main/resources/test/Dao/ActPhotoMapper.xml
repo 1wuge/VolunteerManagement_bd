@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.ActPhotoMapper">
+
+    <insert id="addPhotos">
+        insert into activity_photo values
+        <foreach collection="photos" item="i" separator=",">
+            (#{tName},#{act},#{i})
+        </foreach>
+
+    </insert>
+</mapper>

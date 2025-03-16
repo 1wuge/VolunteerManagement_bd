@@ -45,7 +45,7 @@ public class FileController {
         }
 
        String path=imgName;
-        path="D:\\java_compile\\vueWorkSpace\\hellovuecli1\\public\\img\\"+path;
+        path="D:\\UGit\\VolunteerManagement_fd\\public\\img\\"+path;
         try {
             file.transferTo(new File(path));
         } catch (IOException e) {
