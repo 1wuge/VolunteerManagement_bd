@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.VolunteerMapper">
+    <insert id="insertActi">
+        insert into activities values(#{activityName},#{startTime},#{stopTime},#{address},#{tName},
+                                      #{phone},#{sum}, #{num},#{content},#{status},#{avatar})
+    </insert>
+    <insert id="importInf">
+        insert into activities values
+                                   <foreach collection="acs" item="i" separator=",">
+                                   (#{i.activityName},#{i.startTime},#{i.stopTime},#{i.address},#{i.tName},
+                                       #{i.phone},#{i.sum}, #{i.num},#{i.content},#{i.status},#{i.avatar})
+                                   </foreach>
+
+    </insert>
+    <update id="addNum">
+        update activities set num=num+1 where tName=#{tName} and activityName=#{name};
+    </update>
+    <update id="reduceNum">
+        update activities set num=num-1 where tName=#{tName} and activityName=#{name};
+    </update>
+    <update id="updateTeacherActi">
+        update activities set activityName=#{form.activityName},startTime=#{form.startTime},stopTime=#{form.stopTime},
+                              address=#{form.address},sum=#{form.sum},content=#{form.content} where tName=#{form.tName} and
+                                                                                     activityName=#{oldName}
+
+    </update>
+    <update id="setStatus">
+        update activities set status="已结束" where activityName=#{activityName} and tName=#{tName};
+    </update>
+    <update id="updateNum">
+        update activities set num=#{num} where tName=#{tName} and activityName=#{name};
+    </update>
+    <update id="updateTName">
+        update activities set tName=#{newName} where tName=#{oldName}
+    </update>
+    <update id="updatePhone">
+        update activities set phone=#{phone} where tName=#{tName}
+    </update>
+    <update id="updateAvatar">
+        update activities set avatar=#{avatar} where tName=#{tName}
+    </update>
+    <delete id="deleteByNames">
+        delete from activities where tName=#{tName} and activityName=#{name};
+    </delete>
+    <delete id="deleteByTName">
+        delete from activities where tName=#{tName};
+    </delete>
+
+
+    <select id="selectAll" resultType="test.pojo.VolunteerActivity">
+        select * from activities;
+    </select>
+    <select id="selectByNames" resultType="test.pojo.VolunteerActivity">
+        select * from activities where tName=#{tName} and activityName=#{name};
+    </select>
+    <select id="selectByTName" resultType="test.pojo.VolunteerActivity">
+        select * from activities where tName=#{tName};
+    </select>
+    <select id="getFinish" resultType="test.pojo.VolunteerActivity">
+        select * from activities where status="已结束" and tName=#{tName} and activityName=#{name};
+    </select>
+    <select id="search" resultType="test.pojo.VolunteerActivity">
+        select * from activities where tName like #{name}  or activityName like #{name}
+    </select>
+    <select id="searchT" resultType="test.pojo.VolunteerActivity">
+        select * from activities where tName=#{tName}  and activityName like #{name}
+    </select>
+    <select id="paginate" resultType="test.pojo.VolunteerActivity">
+        select * from activities <if test="isSearch==true">where  tName like #{name} or activityName like #{name}</if>
+                                                                limit #{start},#{size}
+    </select>
+    <select id="paginateT" resultType="test.pojo.VolunteerActivity">
+        select * from activities where tName=#{tName}
+        limit #{start},#{size}
+    </select>
+
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.AccountMapper">
+
+    <insert id="register">
+        insert into account(account,password,bd1.account.username,avatar) values(#{account},#{password},#{username},#{avatar})
+    </insert>
+    <update id="resetPassword">
+        update bd1.account set password=#{password} where account=#{account}
+    </update>
+    <update id="updateName">
+        update bd1.account set username=#{username} where account=#{account}
+    </update>
+    <update id="saveInf">
+        update bd1.account set username=#{username},avatar=#{avatar},
+                               phone=#{phone},address=#{address},
+                               email=#{email} where account=#{account}
+    </update>
+    <delete id="deleteByAccount">
+        delete from bd1.account where account=#{account}
+    </delete>
+    <select id="selectByAccount" resultType="test.pojo.Account">
+        select * from account where account = #{account} and password=#{password};
+    </select>
+    <select id="selectAll" resultType="test.pojo.Account">
+        select * from account;
+    </select>
+    <select id="selectByAccountNum" resultType="test.pojo.Account">
+        select * from account where account = #{account};
+    </select>
+    <select id="getStuName" resultType="String">
+        select username from bd1.account where account=#{account}
+    </select>
+
+
+</mapper>

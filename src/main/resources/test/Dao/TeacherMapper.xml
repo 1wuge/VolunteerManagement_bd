@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.TeacherMapper">
+
+    <insert id="register">
+        insert into teacher values(#{tName},#{phone},#{account},#{password})
+    </insert>
+    <update id="updateForPhone">
+        update teacher set phone=#{phone} where tName=#{tName}
+    </update>
+    <update id="resetPassword">
+        update teacher set password=#{password} where account=#{account}
+    </update>
+    <update id="updateName">
+        update teacher set tName=#{tName} where account=#{account}
+    </update>
+    <update id="saveInf">
+        update teacher set tName=#{tName},avatar=#{avatar},
+                               phone=#{phone},address=#{address},
+                               email=#{email} where account=#{account}
+    </update>
+
+    <delete id="deleteByTName">
+        delete from teacher where tName=#{tName}
+    </delete>
+    <select id="selectByAccount" resultType="test.pojo.Teacher">
+        select * from teacher where account = #{account} and password=#{password};
+    </select>
+    <select id="selectAll" resultType="test.pojo.Teacher">
+        select * from teacher;
+    </select>
+    <select id="selectByPhone" resultType="test.pojo.Teacher">
+        select * from teacher where phone=#{phone}
+    </select>
+    <select id="selectByName" resultType="test.pojo.Teacher">
+        select * from teacher where tName=#{tName}
+    </select>
+    <select id="selectByAccountNum" resultType="test.pojo.Teacher">
+        select * from teacher where account = #{account}
+    </select>
+
+
+</mapper>

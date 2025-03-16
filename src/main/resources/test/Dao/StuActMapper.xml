@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.StuActMapper">
+
+
+    <insert id="add">
+        insert into studentwithact(studentNum,activityName,tName) values(#{account},#{activityName},#{tName})
+    </insert>
+    <update id="updateStuActi">
+        update studentwithact set activityName=#{activityName} where activityName=#{oldName} and tName=#{tName}
+    </update>
+    <update id="setGrade">
+        update studentwithact set grade=#{grade} where studentNum=#{studentNum} and activityName=#{activityName} and tName=#{tName};
+    </update>
+    <update id="updateTName">
+        update studentwithact set tName=#{newName} where tName=#{oldName}
+    </update>
+    <delete id="delete">
+        delete from studentwithact where studentNum=#{account} and activityName=#{activityName} and tName=#{tName};
+    </delete>
+    <delete id="deleteByNames">
+        delete from studentwithact where tName=#{tName} and activityName=#{name};
+    </delete>
+    <delete id="deleteByStuNum">
+        delete from studentwithact where studentNum=#{account}
+    </delete>
+    <delete id="deleteByTName">
+        delete from studentwithact where tName=#{tName};
+    </delete>
+    <select id="select" resultType="java.lang.String">
+        select studentNum from studentwithact where studentNum=#{account} and activityName=#{activityName} and tName=#{tName};
+    </select>
+    <select id="selectByNum" resultType="test.pojo.HasGotActi">
+        select * from studentwithact where studentNum=#{account};
+    </select>
+    <select id="selectByNames" resultType="test.pojo.StuActiGrade">
+        select * from studentwithact where activityName=#{activityName} and tName=#{tName}
+    </select>
+    <select id="selectByNumG" resultType="test.pojo.StuActiGrade">
+        select * from studentwithact where studentNum=#{account};
+    </select>
+    <select id="searchG" resultType="test.pojo.HasGotActi">
+        select * from studentwithact where studentNum=#{account}
+        <if test="search==true">and (activityName like #{name} or tName like #{name})</if>
+    </select>
+    <select id="stuActPaginate" resultType="test.pojo.VolunteerActivity">
+        SELECT *
+        FROM activities
+        WHERE status=#{status}
+        <if test="search==true">and (activityName like #{name} or tName like #{name})</if>
+          and activityName IN (
+        SELECT activityName
+        FROM studentwithact
+        WHERE studentNum = #{account}
+        ) limit #{start},#{size}
+
+
+    </select>
+
+
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.nurseMapper">
+
+    <insert id="insertJobber">
+    insert into nurse(id,name,sex,job,phone,room,produce) values(#{id},#{name},#{sex},#{job},#{phone},#{room},
+                                                                             #{produce});
+    </insert>
+
+    <update id="changMsg">
+        update nurse set name=#{name} where id=#{id};
+    </update>
+    <update id="change">
+        update nurse set name=#{name},sex=#{sex},job=#{job},phone=#{phone},room=#{room},produce=#{produce} where id=#{id} ;
+    </update>
+    <delete id="delete">
+        delete from nurse where id=#{id};
+    </delete>
+
+    <select id="selectById" resultType="test.pojo.others.Nurse">
+        select * from nurse where id=#{id};
+    </select>
+    <select id="selectByRoom" resultType="test.pojo.others.Nurse">
+        select * from nurse where room=#{room};
+    </select>
+    <select id="selectAll" resultType="test.pojo.others.Nurse">
+        select * from nurse;
+    </select>
+    <select id="selectByName" resultType="test.pojo.others.Nurse">
+        select * from nurse where name like #{name};
+    </select>
+    <select id="selectP" resultType="test.pojo.others.Nurse">
+        select * from nurse limit #{start},#{end};
+    </select>
+
+
+</mapper>
