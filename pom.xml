@@ -35,6 +35,13 @@
             <version>1.2.3</version>
         </dependency>
 
+        <!--MyBatisPlus依赖-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.2</version>
+        </dependency>
+
         <!-- 实现导出导入excel -->
         <dependency>
             <groupId>org.apache.poi</groupId>

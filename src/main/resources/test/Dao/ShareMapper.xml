@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    namespace:名称空间
+-->
+
+<mapper namespace="test.Dao.ShareMapper">
+    <insert id="addSharing">
+insert into share(header,produce,content,account,username,tOrS,time) values(#{header},#{produce},
+                                                                            #{content},#{account},
+                                                                            #{username},#{tOrS},#{time})
+    </insert>
+
+
+    <select id="selectAll" resultType="test.pojo.Share">
+        select * from share;
+    </select>
+</mapper>

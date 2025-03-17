@@ -1,16 +1,21 @@
-package test;
+package com.example.spring;
 
 
+import com.example.spring.service.ShareService;
 import com.example.spring.service.TeacherService;
 import com.example.spring.service.UserService;
 import com.example.spring.service.VolunteerService;
+import com.example.spring.service.interfaces.ShareServiceI;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 public class test {
     public static void main(String[] args) {
+
+        System.out.println(ShareService.selectAll());
         /*File directory = new File("D:\\java_compile\\vueWorkSpace\\hellovuecli1\\public\\img");
 
         // 获取文件夹中的所有文件
